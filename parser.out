@@ -1,0 +1,903 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BREAK
+    CIN
+    COMA
+    COMENT
+    CORCHETES
+    DO
+    EXPBOOL
+    FALSE
+    LTGT
+    NUM
+    OPBIN
+    OPUNA
+    PARENA
+    PARENC
+    TRUE
+    WHILE
+
+Grammar
+
+Rule 0     S' -> root
+Rule 1     root -> inicio
+Rule 2     inicio -> instruccion inicio
+Rule 3     inicio -> epsilon
+Rule 4     epsilon -> <empty>
+Rule 5     opestring -> STRING
+Rule 6     programa -> MICHI INCLUDE DOBLER IOSTREAM DOBLER USING NAMESPACE STD PUNTOYCOMA bloque
+Rule 7     bloque -> basico ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES
+Rule 8     mostrarvarios -> mostrarvarios mostrar
+Rule 9     mostrarvarios -> mostrarvarios mostrardatos
+Rule 10    mostrarvarios -> epsilon
+Rule 11    mostrardatos -> COUT DOBLER ID DOBLER ENDL PUNTOYCOMA
+Rule 12    mostrar -> COUT DOBLER opestring DOBLER ENDL PUNTOYCOMA
+Rule 13    condicionif -> IF PARENTESIS ID DOBLER NUMERO PARENTESIS LLAVES decls mostrarvarios LLAVES
+Rule 14    condicionelse -> ELSE LLAVES decls mostrarvarios LLAVES
+Rule 15    condicion -> condicionif
+Rule 16    condicion -> condicionelse
+Rule 17    decls -> decls decljuntos
+Rule 18    decls -> epsilon
+Rule 19    decljuntos -> decl
+Rule 20    decljuntos -> decl2
+Rule 21    decljuntos -> operaciones
+Rule 22    decl2 -> tipo ID PUNTOYCOMA
+Rule 23    decl -> tipo ID IGUALES NUMERO PUNTOYCOMA
+Rule 24    operaciones -> tipo ID IGUALES operacion PUNTOYCOMA
+Rule 25    operacion -> ID OPERACIONES ID
+Rule 26    tipo -> basico
+Rule 27    basico -> INT
+Rule 28    basico -> FLOAT
+Rule 29    instruccion -> programa
+
+Terminals, with rules where they appear
+
+BREAK                : 
+CIN                  : 
+COMA                 : 
+COMENT               : 
+CORCHETES            : 
+COUT                 : 11 12
+DO                   : 
+DOBLER               : 6 6 11 11 12 12 13
+ELSE                 : 14
+ENDL                 : 11 12
+EXPBOOL              : 
+FALSE                : 
+FLOAT                : 28
+ID                   : 7 11 13 22 23 24 25 25
+IF                   : 13
+IGUALES              : 23 24
+INCLUDE              : 6
+INT                  : 27
+IOSTREAM             : 6
+LLAVES               : 7 7 13 13 14 14
+LTGT                 : 
+MICHI                : 6
+NAMESPACE            : 6
+NUM                  : 
+NUMERO               : 7 13 23
+OPBIN                : 
+OPERACIONES          : 25
+OPUNA                : 
+PARENA               : 
+PARENC               : 
+PARENTESIS           : 7 7 13 13
+PUNTOYCOMA           : 6 7 11 12 22 23 24
+RETURN               : 7
+STD                  : 6
+STRING               : 5
+TRUE                 : 
+USING                : 6
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+basico               : 7 26
+bloque               : 6
+condicion            : 7
+condicionelse        : 16
+condicionif          : 15
+decl                 : 19
+decl2                : 20
+decljuntos           : 17
+decls                : 7 13 14 17
+epsilon              : 3 10 18
+inicio               : 1 2
+instruccion          : 2
+mostrar              : 8
+mostrardatos         : 9
+mostrarvarios        : 7 8 9 13 14
+operacion            : 24
+operaciones          : 21
+opestring            : 12
+programa             : 29
+root                 : 0
+tipo                 : 22 23 24
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . root
+    (1) root -> . inicio
+    (2) inicio -> . instruccion inicio
+    (3) inicio -> . epsilon
+    (29) instruccion -> . programa
+    (4) epsilon -> .
+    (6) programa -> . MICHI INCLUDE DOBLER IOSTREAM DOBLER USING NAMESPACE STD PUNTOYCOMA bloque
+
+    $end            reduce using rule 4 (epsilon -> .)
+    MICHI           shift and go to state 6
+
+    root                           shift and go to state 1
+    inicio                         shift and go to state 2
+    instruccion                    shift and go to state 3
+    epsilon                        shift and go to state 4
+    programa                       shift and go to state 5
+
+state 1
+
+    (0) S' -> root .
+
+
+
+state 2
+
+    (1) root -> inicio .
+
+    $end            reduce using rule 1 (root -> inicio .)
+
+
+state 3
+
+    (2) inicio -> instruccion . inicio
+    (2) inicio -> . instruccion inicio
+    (3) inicio -> . epsilon
+    (29) instruccion -> . programa
+    (4) epsilon -> .
+    (6) programa -> . MICHI INCLUDE DOBLER IOSTREAM DOBLER USING NAMESPACE STD PUNTOYCOMA bloque
+
+    $end            reduce using rule 4 (epsilon -> .)
+    MICHI           shift and go to state 6
+
+    instruccion                    shift and go to state 3
+    inicio                         shift and go to state 7
+    epsilon                        shift and go to state 4
+    programa                       shift and go to state 5
+
+state 4
+
+    (3) inicio -> epsilon .
+
+    $end            reduce using rule 3 (inicio -> epsilon .)
+
+
+state 5
+
+    (29) instruccion -> programa .
+
+    MICHI           reduce using rule 29 (instruccion -> programa .)
+    $end            reduce using rule 29 (instruccion -> programa .)
+
+
+state 6
+
+    (6) programa -> MICHI . INCLUDE DOBLER IOSTREAM DOBLER USING NAMESPACE STD PUNTOYCOMA bloque
+
+    INCLUDE         shift and go to state 8
+
+
+state 7
+
+    (2) inicio -> instruccion inicio .
+
+    $end            reduce using rule 2 (inicio -> instruccion inicio .)
+
+
+state 8
+
+    (6) programa -> MICHI INCLUDE . DOBLER IOSTREAM DOBLER USING NAMESPACE STD PUNTOYCOMA bloque
+
+    DOBLER          shift and go to state 9
+
+
+state 9
+
+    (6) programa -> MICHI INCLUDE DOBLER . IOSTREAM DOBLER USING NAMESPACE STD PUNTOYCOMA bloque
+
+    IOSTREAM        shift and go to state 10
+
+
+state 10
+
+    (6) programa -> MICHI INCLUDE DOBLER IOSTREAM . DOBLER USING NAMESPACE STD PUNTOYCOMA bloque
+
+    DOBLER          shift and go to state 11
+
+
+state 11
+
+    (6) programa -> MICHI INCLUDE DOBLER IOSTREAM DOBLER . USING NAMESPACE STD PUNTOYCOMA bloque
+
+    USING           shift and go to state 12
+
+
+state 12
+
+    (6) programa -> MICHI INCLUDE DOBLER IOSTREAM DOBLER USING . NAMESPACE STD PUNTOYCOMA bloque
+
+    NAMESPACE       shift and go to state 13
+
+
+state 13
+
+    (6) programa -> MICHI INCLUDE DOBLER IOSTREAM DOBLER USING NAMESPACE . STD PUNTOYCOMA bloque
+
+    STD             shift and go to state 14
+
+
+state 14
+
+    (6) programa -> MICHI INCLUDE DOBLER IOSTREAM DOBLER USING NAMESPACE STD . PUNTOYCOMA bloque
+
+    PUNTOYCOMA      shift and go to state 15
+
+
+state 15
+
+    (6) programa -> MICHI INCLUDE DOBLER IOSTREAM DOBLER USING NAMESPACE STD PUNTOYCOMA . bloque
+    (7) bloque -> . basico ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES
+    (27) basico -> . INT
+    (28) basico -> . FLOAT
+
+    INT             shift and go to state 18
+    FLOAT           shift and go to state 19
+
+    bloque                         shift and go to state 16
+    basico                         shift and go to state 17
+
+state 16
+
+    (6) programa -> MICHI INCLUDE DOBLER IOSTREAM DOBLER USING NAMESPACE STD PUNTOYCOMA bloque .
+
+    MICHI           reduce using rule 6 (programa -> MICHI INCLUDE DOBLER IOSTREAM DOBLER USING NAMESPACE STD PUNTOYCOMA bloque .)
+    $end            reduce using rule 6 (programa -> MICHI INCLUDE DOBLER IOSTREAM DOBLER USING NAMESPACE STD PUNTOYCOMA bloque .)
+
+
+state 17
+
+    (7) bloque -> basico . ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES
+
+    ID              shift and go to state 20
+
+
+state 18
+
+    (27) basico -> INT .
+
+    ID              reduce using rule 27 (basico -> INT .)
+
+
+state 19
+
+    (28) basico -> FLOAT .
+
+    ID              reduce using rule 28 (basico -> FLOAT .)
+
+
+state 20
+
+    (7) bloque -> basico ID . PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES
+
+    PARENTESIS      shift and go to state 21
+
+
+state 21
+
+    (7) bloque -> basico ID PARENTESIS . PARENTESIS LLAVES decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES
+
+    PARENTESIS      shift and go to state 22
+
+
+state 22
+
+    (7) bloque -> basico ID PARENTESIS PARENTESIS . LLAVES decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES
+
+    LLAVES          shift and go to state 23
+
+
+state 23
+
+    (7) bloque -> basico ID PARENTESIS PARENTESIS LLAVES . decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES
+    (17) decls -> . decls decljuntos
+    (18) decls -> . epsilon
+    (4) epsilon -> .
+
+    INT             reduce using rule 4 (epsilon -> .)
+    FLOAT           reduce using rule 4 (epsilon -> .)
+    COUT            reduce using rule 4 (epsilon -> .)
+    IF              reduce using rule 4 (epsilon -> .)
+    ELSE            reduce using rule 4 (epsilon -> .)
+
+    decls                          shift and go to state 24
+    epsilon                        shift and go to state 25
+
+state 24
+
+    (7) bloque -> basico ID PARENTESIS PARENTESIS LLAVES decls . mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES
+    (17) decls -> decls . decljuntos
+    (8) mostrarvarios -> . mostrarvarios mostrar
+    (9) mostrarvarios -> . mostrarvarios mostrardatos
+    (10) mostrarvarios -> . epsilon
+    (19) decljuntos -> . decl
+    (20) decljuntos -> . decl2
+    (21) decljuntos -> . operaciones
+    (4) epsilon -> .
+    (23) decl -> . tipo ID IGUALES NUMERO PUNTOYCOMA
+    (22) decl2 -> . tipo ID PUNTOYCOMA
+    (24) operaciones -> . tipo ID IGUALES operacion PUNTOYCOMA
+    (26) tipo -> . basico
+    (27) basico -> . INT
+    (28) basico -> . FLOAT
+
+    COUT            reduce using rule 4 (epsilon -> .)
+    IF              reduce using rule 4 (epsilon -> .)
+    ELSE            reduce using rule 4 (epsilon -> .)
+    INT             shift and go to state 18
+    FLOAT           shift and go to state 19
+
+    basico                         shift and go to state 26
+    mostrarvarios                  shift and go to state 27
+    decljuntos                     shift and go to state 28
+    epsilon                        shift and go to state 29
+    decl                           shift and go to state 30
+    decl2                          shift and go to state 31
+    operaciones                    shift and go to state 32
+    tipo                           shift and go to state 33
+
+state 25
+
+    (18) decls -> epsilon .
+
+    INT             reduce using rule 18 (decls -> epsilon .)
+    FLOAT           reduce using rule 18 (decls -> epsilon .)
+    COUT            reduce using rule 18 (decls -> epsilon .)
+    IF              reduce using rule 18 (decls -> epsilon .)
+    ELSE            reduce using rule 18 (decls -> epsilon .)
+    LLAVES          reduce using rule 18 (decls -> epsilon .)
+
+
+state 26
+
+    (26) tipo -> basico .
+
+    ID              reduce using rule 26 (tipo -> basico .)
+
+
+state 27
+
+    (7) bloque -> basico ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios . condicion RETURN NUMERO PUNTOYCOMA LLAVES
+    (8) mostrarvarios -> mostrarvarios . mostrar
+    (9) mostrarvarios -> mostrarvarios . mostrardatos
+    (15) condicion -> . condicionif
+    (16) condicion -> . condicionelse
+    (12) mostrar -> . COUT DOBLER opestring DOBLER ENDL PUNTOYCOMA
+    (11) mostrardatos -> . COUT DOBLER ID DOBLER ENDL PUNTOYCOMA
+    (13) condicionif -> . IF PARENTESIS ID DOBLER NUMERO PARENTESIS LLAVES decls mostrarvarios LLAVES
+    (14) condicionelse -> . ELSE LLAVES decls mostrarvarios LLAVES
+
+    COUT            shift and go to state 39
+    IF              shift and go to state 40
+    ELSE            shift and go to state 41
+
+    condicion                      shift and go to state 34
+    mostrar                        shift and go to state 35
+    mostrardatos                   shift and go to state 36
+    condicionif                    shift and go to state 37
+    condicionelse                  shift and go to state 38
+
+state 28
+
+    (17) decls -> decls decljuntos .
+
+    INT             reduce using rule 17 (decls -> decls decljuntos .)
+    FLOAT           reduce using rule 17 (decls -> decls decljuntos .)
+    COUT            reduce using rule 17 (decls -> decls decljuntos .)
+    IF              reduce using rule 17 (decls -> decls decljuntos .)
+    ELSE            reduce using rule 17 (decls -> decls decljuntos .)
+    LLAVES          reduce using rule 17 (decls -> decls decljuntos .)
+
+
+state 29
+
+    (10) mostrarvarios -> epsilon .
+
+    COUT            reduce using rule 10 (mostrarvarios -> epsilon .)
+    IF              reduce using rule 10 (mostrarvarios -> epsilon .)
+    ELSE            reduce using rule 10 (mostrarvarios -> epsilon .)
+    LLAVES          reduce using rule 10 (mostrarvarios -> epsilon .)
+
+
+state 30
+
+    (19) decljuntos -> decl .
+
+    INT             reduce using rule 19 (decljuntos -> decl .)
+    FLOAT           reduce using rule 19 (decljuntos -> decl .)
+    COUT            reduce using rule 19 (decljuntos -> decl .)
+    IF              reduce using rule 19 (decljuntos -> decl .)
+    ELSE            reduce using rule 19 (decljuntos -> decl .)
+    LLAVES          reduce using rule 19 (decljuntos -> decl .)
+
+
+state 31
+
+    (20) decljuntos -> decl2 .
+
+    INT             reduce using rule 20 (decljuntos -> decl2 .)
+    FLOAT           reduce using rule 20 (decljuntos -> decl2 .)
+    COUT            reduce using rule 20 (decljuntos -> decl2 .)
+    IF              reduce using rule 20 (decljuntos -> decl2 .)
+    ELSE            reduce using rule 20 (decljuntos -> decl2 .)
+    LLAVES          reduce using rule 20 (decljuntos -> decl2 .)
+
+
+state 32
+
+    (21) decljuntos -> operaciones .
+
+    INT             reduce using rule 21 (decljuntos -> operaciones .)
+    FLOAT           reduce using rule 21 (decljuntos -> operaciones .)
+    COUT            reduce using rule 21 (decljuntos -> operaciones .)
+    IF              reduce using rule 21 (decljuntos -> operaciones .)
+    ELSE            reduce using rule 21 (decljuntos -> operaciones .)
+    LLAVES          reduce using rule 21 (decljuntos -> operaciones .)
+
+
+state 33
+
+    (23) decl -> tipo . ID IGUALES NUMERO PUNTOYCOMA
+    (22) decl2 -> tipo . ID PUNTOYCOMA
+    (24) operaciones -> tipo . ID IGUALES operacion PUNTOYCOMA
+
+    ID              shift and go to state 42
+
+
+state 34
+
+    (7) bloque -> basico ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion . RETURN NUMERO PUNTOYCOMA LLAVES
+
+    RETURN          shift and go to state 43
+
+
+state 35
+
+    (8) mostrarvarios -> mostrarvarios mostrar .
+
+    COUT            reduce using rule 8 (mostrarvarios -> mostrarvarios mostrar .)
+    IF              reduce using rule 8 (mostrarvarios -> mostrarvarios mostrar .)
+    ELSE            reduce using rule 8 (mostrarvarios -> mostrarvarios mostrar .)
+    LLAVES          reduce using rule 8 (mostrarvarios -> mostrarvarios mostrar .)
+
+
+state 36
+
+    (9) mostrarvarios -> mostrarvarios mostrardatos .
+
+    COUT            reduce using rule 9 (mostrarvarios -> mostrarvarios mostrardatos .)
+    IF              reduce using rule 9 (mostrarvarios -> mostrarvarios mostrardatos .)
+    ELSE            reduce using rule 9 (mostrarvarios -> mostrarvarios mostrardatos .)
+    LLAVES          reduce using rule 9 (mostrarvarios -> mostrarvarios mostrardatos .)
+
+
+state 37
+
+    (15) condicion -> condicionif .
+
+    RETURN          reduce using rule 15 (condicion -> condicionif .)
+
+
+state 38
+
+    (16) condicion -> condicionelse .
+
+    RETURN          reduce using rule 16 (condicion -> condicionelse .)
+
+
+state 39
+
+    (12) mostrar -> COUT . DOBLER opestring DOBLER ENDL PUNTOYCOMA
+    (11) mostrardatos -> COUT . DOBLER ID DOBLER ENDL PUNTOYCOMA
+
+    DOBLER          shift and go to state 44
+
+
+state 40
+
+    (13) condicionif -> IF . PARENTESIS ID DOBLER NUMERO PARENTESIS LLAVES decls mostrarvarios LLAVES
+
+    PARENTESIS      shift and go to state 45
+
+
+state 41
+
+    (14) condicionelse -> ELSE . LLAVES decls mostrarvarios LLAVES
+
+    LLAVES          shift and go to state 46
+
+
+state 42
+
+    (23) decl -> tipo ID . IGUALES NUMERO PUNTOYCOMA
+    (22) decl2 -> tipo ID . PUNTOYCOMA
+    (24) operaciones -> tipo ID . IGUALES operacion PUNTOYCOMA
+
+    IGUALES         shift and go to state 47
+    PUNTOYCOMA      shift and go to state 48
+
+
+state 43
+
+    (7) bloque -> basico ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion RETURN . NUMERO PUNTOYCOMA LLAVES
+
+    NUMERO          shift and go to state 49
+
+
+state 44
+
+    (12) mostrar -> COUT DOBLER . opestring DOBLER ENDL PUNTOYCOMA
+    (11) mostrardatos -> COUT DOBLER . ID DOBLER ENDL PUNTOYCOMA
+    (5) opestring -> . STRING
+
+    ID              shift and go to state 51
+    STRING          shift and go to state 52
+
+    opestring                      shift and go to state 50
+
+state 45
+
+    (13) condicionif -> IF PARENTESIS . ID DOBLER NUMERO PARENTESIS LLAVES decls mostrarvarios LLAVES
+
+    ID              shift and go to state 53
+
+
+state 46
+
+    (14) condicionelse -> ELSE LLAVES . decls mostrarvarios LLAVES
+    (17) decls -> . decls decljuntos
+    (18) decls -> . epsilon
+    (4) epsilon -> .
+
+    INT             reduce using rule 4 (epsilon -> .)
+    FLOAT           reduce using rule 4 (epsilon -> .)
+    LLAVES          reduce using rule 4 (epsilon -> .)
+    COUT            reduce using rule 4 (epsilon -> .)
+
+    decls                          shift and go to state 54
+    epsilon                        shift and go to state 25
+
+state 47
+
+    (23) decl -> tipo ID IGUALES . NUMERO PUNTOYCOMA
+    (24) operaciones -> tipo ID IGUALES . operacion PUNTOYCOMA
+    (25) operacion -> . ID OPERACIONES ID
+
+    NUMERO          shift and go to state 56
+    ID              shift and go to state 55
+
+    operacion                      shift and go to state 57
+
+state 48
+
+    (22) decl2 -> tipo ID PUNTOYCOMA .
+
+    INT             reduce using rule 22 (decl2 -> tipo ID PUNTOYCOMA .)
+    FLOAT           reduce using rule 22 (decl2 -> tipo ID PUNTOYCOMA .)
+    COUT            reduce using rule 22 (decl2 -> tipo ID PUNTOYCOMA .)
+    IF              reduce using rule 22 (decl2 -> tipo ID PUNTOYCOMA .)
+    ELSE            reduce using rule 22 (decl2 -> tipo ID PUNTOYCOMA .)
+    LLAVES          reduce using rule 22 (decl2 -> tipo ID PUNTOYCOMA .)
+
+
+state 49
+
+    (7) bloque -> basico ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion RETURN NUMERO . PUNTOYCOMA LLAVES
+
+    PUNTOYCOMA      shift and go to state 58
+
+
+state 50
+
+    (12) mostrar -> COUT DOBLER opestring . DOBLER ENDL PUNTOYCOMA
+
+    DOBLER          shift and go to state 59
+
+
+state 51
+
+    (11) mostrardatos -> COUT DOBLER ID . DOBLER ENDL PUNTOYCOMA
+
+    DOBLER          shift and go to state 60
+
+
+state 52
+
+    (5) opestring -> STRING .
+
+    DOBLER          reduce using rule 5 (opestring -> STRING .)
+
+
+state 53
+
+    (13) condicionif -> IF PARENTESIS ID . DOBLER NUMERO PARENTESIS LLAVES decls mostrarvarios LLAVES
+
+    DOBLER          shift and go to state 61
+
+
+state 54
+
+    (14) condicionelse -> ELSE LLAVES decls . mostrarvarios LLAVES
+    (17) decls -> decls . decljuntos
+    (8) mostrarvarios -> . mostrarvarios mostrar
+    (9) mostrarvarios -> . mostrarvarios mostrardatos
+    (10) mostrarvarios -> . epsilon
+    (19) decljuntos -> . decl
+    (20) decljuntos -> . decl2
+    (21) decljuntos -> . operaciones
+    (4) epsilon -> .
+    (23) decl -> . tipo ID IGUALES NUMERO PUNTOYCOMA
+    (22) decl2 -> . tipo ID PUNTOYCOMA
+    (24) operaciones -> . tipo ID IGUALES operacion PUNTOYCOMA
+    (26) tipo -> . basico
+    (27) basico -> . INT
+    (28) basico -> . FLOAT
+
+    LLAVES          reduce using rule 4 (epsilon -> .)
+    COUT            reduce using rule 4 (epsilon -> .)
+    INT             shift and go to state 18
+    FLOAT           shift and go to state 19
+
+    mostrarvarios                  shift and go to state 62
+    decljuntos                     shift and go to state 28
+    epsilon                        shift and go to state 29
+    decl                           shift and go to state 30
+    decl2                          shift and go to state 31
+    operaciones                    shift and go to state 32
+    tipo                           shift and go to state 33
+    basico                         shift and go to state 26
+
+state 55
+
+    (25) operacion -> ID . OPERACIONES ID
+
+    OPERACIONES     shift and go to state 63
+
+
+state 56
+
+    (23) decl -> tipo ID IGUALES NUMERO . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 64
+
+
+state 57
+
+    (24) operaciones -> tipo ID IGUALES operacion . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 65
+
+
+state 58
+
+    (7) bloque -> basico ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA . LLAVES
+
+    LLAVES          shift and go to state 66
+
+
+state 59
+
+    (12) mostrar -> COUT DOBLER opestring DOBLER . ENDL PUNTOYCOMA
+
+    ENDL            shift and go to state 67
+
+
+state 60
+
+    (11) mostrardatos -> COUT DOBLER ID DOBLER . ENDL PUNTOYCOMA
+
+    ENDL            shift and go to state 68
+
+
+state 61
+
+    (13) condicionif -> IF PARENTESIS ID DOBLER . NUMERO PARENTESIS LLAVES decls mostrarvarios LLAVES
+
+    NUMERO          shift and go to state 69
+
+
+state 62
+
+    (14) condicionelse -> ELSE LLAVES decls mostrarvarios . LLAVES
+    (8) mostrarvarios -> mostrarvarios . mostrar
+    (9) mostrarvarios -> mostrarvarios . mostrardatos
+    (12) mostrar -> . COUT DOBLER opestring DOBLER ENDL PUNTOYCOMA
+    (11) mostrardatos -> . COUT DOBLER ID DOBLER ENDL PUNTOYCOMA
+
+    LLAVES          shift and go to state 70
+    COUT            shift and go to state 39
+
+    mostrar                        shift and go to state 35
+    mostrardatos                   shift and go to state 36
+
+state 63
+
+    (25) operacion -> ID OPERACIONES . ID
+
+    ID              shift and go to state 71
+
+
+state 64
+
+    (23) decl -> tipo ID IGUALES NUMERO PUNTOYCOMA .
+
+    INT             reduce using rule 23 (decl -> tipo ID IGUALES NUMERO PUNTOYCOMA .)
+    FLOAT           reduce using rule 23 (decl -> tipo ID IGUALES NUMERO PUNTOYCOMA .)
+    COUT            reduce using rule 23 (decl -> tipo ID IGUALES NUMERO PUNTOYCOMA .)
+    IF              reduce using rule 23 (decl -> tipo ID IGUALES NUMERO PUNTOYCOMA .)
+    ELSE            reduce using rule 23 (decl -> tipo ID IGUALES NUMERO PUNTOYCOMA .)
+    LLAVES          reduce using rule 23 (decl -> tipo ID IGUALES NUMERO PUNTOYCOMA .)
+
+
+state 65
+
+    (24) operaciones -> tipo ID IGUALES operacion PUNTOYCOMA .
+
+    INT             reduce using rule 24 (operaciones -> tipo ID IGUALES operacion PUNTOYCOMA .)
+    FLOAT           reduce using rule 24 (operaciones -> tipo ID IGUALES operacion PUNTOYCOMA .)
+    COUT            reduce using rule 24 (operaciones -> tipo ID IGUALES operacion PUNTOYCOMA .)
+    IF              reduce using rule 24 (operaciones -> tipo ID IGUALES operacion PUNTOYCOMA .)
+    ELSE            reduce using rule 24 (operaciones -> tipo ID IGUALES operacion PUNTOYCOMA .)
+    LLAVES          reduce using rule 24 (operaciones -> tipo ID IGUALES operacion PUNTOYCOMA .)
+
+
+state 66
+
+    (7) bloque -> basico ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES .
+
+    MICHI           reduce using rule 7 (bloque -> basico ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES .)
+    $end            reduce using rule 7 (bloque -> basico ID PARENTESIS PARENTESIS LLAVES decls mostrarvarios condicion RETURN NUMERO PUNTOYCOMA LLAVES .)
+
+
+state 67
+
+    (12) mostrar -> COUT DOBLER opestring DOBLER ENDL . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 72
+
+
+state 68
+
+    (11) mostrardatos -> COUT DOBLER ID DOBLER ENDL . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 73
+
+
+state 69
+
+    (13) condicionif -> IF PARENTESIS ID DOBLER NUMERO . PARENTESIS LLAVES decls mostrarvarios LLAVES
+
+    PARENTESIS      shift and go to state 74
+
+
+state 70
+
+    (14) condicionelse -> ELSE LLAVES decls mostrarvarios LLAVES .
+
+    RETURN          reduce using rule 14 (condicionelse -> ELSE LLAVES decls mostrarvarios LLAVES .)
+
+
+state 71
+
+    (25) operacion -> ID OPERACIONES ID .
+
+    PUNTOYCOMA      reduce using rule 25 (operacion -> ID OPERACIONES ID .)
+
+
+state 72
+
+    (12) mostrar -> COUT DOBLER opestring DOBLER ENDL PUNTOYCOMA .
+
+    COUT            reduce using rule 12 (mostrar -> COUT DOBLER opestring DOBLER ENDL PUNTOYCOMA .)
+    IF              reduce using rule 12 (mostrar -> COUT DOBLER opestring DOBLER ENDL PUNTOYCOMA .)
+    ELSE            reduce using rule 12 (mostrar -> COUT DOBLER opestring DOBLER ENDL PUNTOYCOMA .)
+    LLAVES          reduce using rule 12 (mostrar -> COUT DOBLER opestring DOBLER ENDL PUNTOYCOMA .)
+
+
+state 73
+
+    (11) mostrardatos -> COUT DOBLER ID DOBLER ENDL PUNTOYCOMA .
+
+    COUT            reduce using rule 11 (mostrardatos -> COUT DOBLER ID DOBLER ENDL PUNTOYCOMA .)
+    IF              reduce using rule 11 (mostrardatos -> COUT DOBLER ID DOBLER ENDL PUNTOYCOMA .)
+    ELSE            reduce using rule 11 (mostrardatos -> COUT DOBLER ID DOBLER ENDL PUNTOYCOMA .)
+    LLAVES          reduce using rule 11 (mostrardatos -> COUT DOBLER ID DOBLER ENDL PUNTOYCOMA .)
+
+
+state 74
+
+    (13) condicionif -> IF PARENTESIS ID DOBLER NUMERO PARENTESIS . LLAVES decls mostrarvarios LLAVES
+
+    LLAVES          shift and go to state 75
+
+
+state 75
+
+    (13) condicionif -> IF PARENTESIS ID DOBLER NUMERO PARENTESIS LLAVES . decls mostrarvarios LLAVES
+    (17) decls -> . decls decljuntos
+    (18) decls -> . epsilon
+    (4) epsilon -> .
+
+    INT             reduce using rule 4 (epsilon -> .)
+    FLOAT           reduce using rule 4 (epsilon -> .)
+    LLAVES          reduce using rule 4 (epsilon -> .)
+    COUT            reduce using rule 4 (epsilon -> .)
+
+    decls                          shift and go to state 76
+    epsilon                        shift and go to state 25
+
+state 76
+
+    (13) condicionif -> IF PARENTESIS ID DOBLER NUMERO PARENTESIS LLAVES decls . mostrarvarios LLAVES
+    (17) decls -> decls . decljuntos
+    (8) mostrarvarios -> . mostrarvarios mostrar
+    (9) mostrarvarios -> . mostrarvarios mostrardatos
+    (10) mostrarvarios -> . epsilon
+    (19) decljuntos -> . decl
+    (20) decljuntos -> . decl2
+    (21) decljuntos -> . operaciones
+    (4) epsilon -> .
+    (23) decl -> . tipo ID IGUALES NUMERO PUNTOYCOMA
+    (22) decl2 -> . tipo ID PUNTOYCOMA
+    (24) operaciones -> . tipo ID IGUALES operacion PUNTOYCOMA
+    (26) tipo -> . basico
+    (27) basico -> . INT
+    (28) basico -> . FLOAT
+
+    LLAVES          reduce using rule 4 (epsilon -> .)
+    COUT            reduce using rule 4 (epsilon -> .)
+    INT             shift and go to state 18
+    FLOAT           shift and go to state 19
+
+    mostrarvarios                  shift and go to state 77
+    decljuntos                     shift and go to state 28
+    epsilon                        shift and go to state 29
+    decl                           shift and go to state 30
+    decl2                          shift and go to state 31
+    operaciones                    shift and go to state 32
+    tipo                           shift and go to state 33
+    basico                         shift and go to state 26
+
+state 77
+
+    (13) condicionif -> IF PARENTESIS ID DOBLER NUMERO PARENTESIS LLAVES decls mostrarvarios . LLAVES
+    (8) mostrarvarios -> mostrarvarios . mostrar
+    (9) mostrarvarios -> mostrarvarios . mostrardatos
+    (12) mostrar -> . COUT DOBLER opestring DOBLER ENDL PUNTOYCOMA
+    (11) mostrardatos -> . COUT DOBLER ID DOBLER ENDL PUNTOYCOMA
+
+    LLAVES          shift and go to state 78
+    COUT            shift and go to state 39
+
+    mostrar                        shift and go to state 35
+    mostrardatos                   shift and go to state 36
+
+state 78
+
+    (13) condicionif -> IF PARENTESIS ID DOBLER NUMERO PARENTESIS LLAVES decls mostrarvarios LLAVES .
+
+    RETURN          reduce using rule 13 (condicionif -> IF PARENTESIS ID DOBLER NUMERO PARENTESIS LLAVES decls mostrarvarios LLAVES .)
+
